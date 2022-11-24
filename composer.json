@@ -1,0 +1,6 @@
+{
+    "require": {
+        "symfony/skeleton": "^5.4",
+        "doctrine/orm": "^2.13"
+    }
+}
