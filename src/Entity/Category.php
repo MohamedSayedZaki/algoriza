@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\CategoryRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\CategoryRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
 class Category
@@ -17,7 +18,7 @@ class Category
     private $name;
 
     #[ORM\Column(type: 'boolean')]
-    private $is_active;
+    private $active;
 
     public function getId(): ?int
     {
@@ -36,15 +37,19 @@ class Category
         return $this;
     }
 
-    public function isIsActive(): ?bool
+    public function getActive(): ?bool
     {
-        return $this->is_active;
+        return $this->active;
     }
 
-    public function setIsActive(bool $is_active): self
+    public function setActive(bool $active): self
     {
-        $this->is_active = $is_active;
+        $this->active = $active;
 
         return $this;
+    }
+
+    public function __toString(){
+        return $this->name;
     }
 }

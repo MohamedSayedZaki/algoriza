@@ -39,6 +39,16 @@ class ProductRepository extends ServiceEntityRepository
         }
     }
 
+    public function search($value)
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.name like :val')
+            ->setParameter('val', '%'.$value.'%')
+            ->setMaxResults(20)
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Product[] Returns an array of Product objects
 //     */

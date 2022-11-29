@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Category !{% endblock %}
+
+{% block body %}
+    <div class="container">
+        {% for notice in app.flashes('notice') %}
+            {{ notice }}
+        {% endfor %}
+        <div class="row">
+            <div class="col-sm-12">
+                <h2>Edit <b>Category {{ category.name }}</b></h2>
+                <form method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="cname">Category Name</label>
+                        <input type="text" class="form-control" name="cname" id="cname" aria-describedby="" value="{{ category.name }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="cactive">Category Activity</label>
+                        <select name="cactive"  class="form-control">
+                            <option value="1" {% if category.active == 1 %} selected {% endif %}>Active</option>
+                            <option value="2" {% if category.active == 0 %} selected {% endif %}>Inactive</option>
+                        </select>
+                    </div>                                                     
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

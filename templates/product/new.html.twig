@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Get All Products!{% endblock %}
+
+{% block body %}
+    <div class="container">
+        {% for notice in app.flashes('notice') %}
+            {{ notice }}
+        {% endfor %}
+        <div class="row">
+            <div class="col-sm-12">
+                <h2>Add new <b>Product</b></h2>
+                <form method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="productName">Product Name</label>
+                        <input type="text" class="form-control" name="pname" id="productName" aria-describedby="" placeholder="Product Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="productDescription">Product Description</label>
+                        <textarea class="form-control" name="pdescription" id="pdescription" placeholder="Product Description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="productDescription">Product Category</label>
+                        <select name="pcategory"  class="form-control">
+                            {% for category in categories %}
+                                <option value="{{ category.id }}">{{ category.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div> 
+                    <div class="form-group">
+                        <label for="productTags">Product Tags</label>
+                        <input type="text" class="form-control" name="ptags" id="productTags" aria-describedby="" placeholder="Product Tags">
+                    </div>          
+                    <div class="form-group">
+                        <label for="productTags">Product Image</label>
+                        <input type="file" class="form-control" name="pimage" id="pimage" aria-describedby="">
+                    </div>                                                           
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

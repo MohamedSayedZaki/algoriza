@@ -19,15 +19,15 @@ class Product
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $description;
 
-    #[ORM\Column(type: 'integer', nullable: false)]
-    #[ManyToOne(targetEntity: Category::class)]
-    private $category;
-
     #[ORM\Column(type: 'text', nullable: true)]
     private $tags;
 
     #[ORM\Column(type: 'text')]
     private $picture;
+
+    #[ORM\ManyToOne(targetEntity: Category::class)]
+    #[ORM\JoinColumn(nullable: false)]
+    private $category;
 
     public function getId(): ?int
     {
@@ -58,18 +58,6 @@ class Product
         return $this;
     }
 
-    public function getCategory(): ?int
-    {
-        return $this->category;
-    }
-
-    public function setCategory(int $category): self
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
     public function getTags(): ?string
     {
         return $this->tags;
@@ -90,6 +78,18 @@ class Product
     public function setPicture(string $picture): self
     {
         $this->picture = $picture;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }
